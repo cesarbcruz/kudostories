@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/home/ui/src",
+  "prefix": "kudostories",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/home/ui"],
+      "options": {
+        "jestConfig": "libs/home/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/home/ui/**/*.ts", "libs/home/ui/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
