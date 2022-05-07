@@ -1,3 +1,4 @@
+import { SharedUiModule } from './../../../../libs/shared/ui/src/lib/shared-ui.module';
 import { CreatorFeatureModule } from './../../../../libs/creator/feature/src/lib/creator-feature.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +11,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     CreatorFeatureModule,
+    SharedUiModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],

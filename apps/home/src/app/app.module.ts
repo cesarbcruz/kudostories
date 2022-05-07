@@ -1,3 +1,4 @@
+import { SharedUiModule } from './../../../../libs/shared/ui/src/lib/shared-ui.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,7 +12,7 @@ import { HomeUiModule } from '@kudostories/home/ui';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, MatSliderModule, HomeUiModule],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, MatSliderModule, HomeUiModule, SharedUiModule],
   providers: [],
   bootstrap: [AppComponent],
 })

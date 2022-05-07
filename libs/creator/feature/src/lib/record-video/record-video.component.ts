@@ -20,7 +20,7 @@ export class RecordVideoComponent implements OnInit {
   videoBlob: Blob | undefined;
   videoName: string | undefined;
   videoStream: MediaStream | undefined;
-  videoConf = { video: { facingMode: 'user', width: 320 }, audio: true };
+  videoConf = { video: { facingMode: 'user' }, audio: true };
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -104,7 +104,7 @@ export class RecordVideoComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  downloadVideoRecordedData() {
+  sendVideoRecordedData() {
     this._downloadFile(this.videoBlob, 'video/mp4', this.videoName? this.videoName: '');
   }
 
