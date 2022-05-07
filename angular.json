@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "creator": "apps/creator",
+    "creator-e2e": "apps/creator-e2e",
+    "creator-feature": "libs/creator/feature",
+    "home": "apps/home",
+    "home-e2e": "apps/home-e2e",
+    "home-ui": "libs/home/ui",
+    "viewer": "apps/viewer",
+    "viewer-e2e": "apps/viewer-e2e"
+  }
+}
