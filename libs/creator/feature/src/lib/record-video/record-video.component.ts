@@ -20,7 +20,6 @@ export class RecordVideoComponent implements OnInit {
   videoBlob: Blob | undefined;
   videoName: string | undefined;
   videoStream: MediaStream | undefined;
-  audioConf = { audio: true };
   videoConf = { video: { facingMode: 'user', width: 320 }, audio: true };
 
   constructor(
@@ -57,7 +56,7 @@ export class RecordVideoComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.video = this.videoElement.nativeElement;    
+    this.video = this.videoElement.nativeElement;
   }
 
   startVideoRecording() {
@@ -69,6 +68,8 @@ export class RecordVideoComponent implements OnInit {
         .then((stream) => {
           // this.video.src = window.URL.createObjectURL(stream);
           this.video.srcObject = stream;
+          this.video.muted = true;
+          this.video.volume = 0;
           this.video.play();
         })
         .catch(function (err) {
@@ -91,6 +92,8 @@ export class RecordVideoComponent implements OnInit {
       this.video.srcObject = this.videoBlobUrl;
       this.isVideoRecording = false;
       this.video.controls = true;
+      this.video.muted = false;
+      this.video.volume = 1;
     }
   }
 

@@ -45,9 +45,6 @@ export class VideoRecordingService {
 
   startRecording( conf: any ): Promise<any> {
     var browser = <any>navigator;
-    if (this.recorder) {
-    }
-
     this._recordingTime.next('00:00');
     return new Promise((resolve, reject) => {
       browser.mediaDevices.getUserMedia(conf).then((s: MediaStream) => {
@@ -69,8 +66,7 @@ export class VideoRecordingService {
     console.log('record')
     this.recorder = new RecordRTC(this.stream, {
       type: 'video',
-      mimeType: 'video/webm',
-      bitsPerSecond: 44000
+      mimeType: 'video/webm'
     });
     this.recorder.startRecording();
     this.startTime = moment();
