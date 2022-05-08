@@ -35,8 +35,8 @@ export class AppController {
 
   @Post('upload')
   @UseInterceptors(AnyFilesInterceptor())
-  uploadedFile(file) {
-    if(file){
+  uploadedFile(@UploadedFile() file, @Body() body) {
+    if(!file){
       return this.appService.saveKudos({de:'',para:'',video:file});
     }    
   }

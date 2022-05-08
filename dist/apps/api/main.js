@@ -28,8 +28,8 @@ let AppController = class AppController {
     getKudos() {
         return this.appService.getKudos();
     }
-    uploadedFile(file) {
-        if (file) {
+    uploadedFile(file, body) {
+        if (!file) {
             return this.appService.saveKudos({ de: '', para: '', video: file });
         }
     }
@@ -56,8 +56,10 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     (0, common_1.Post)('upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.AnyFilesInterceptor)()),
+    tslib_1.__param(0, (0, common_1.UploadedFile)()),
+    tslib_1.__param(1, (0, common_1.Body)()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], AppController.prototype, "uploadedFile", null);
 AppController = tslib_1.__decorate([
