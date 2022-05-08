@@ -12,6 +12,7 @@ exports.AppController = void 0;
 const tslib_1 = __webpack_require__("tslib");
 const api_interfaces_1 = __webpack_require__("./libs/api-interfaces/src/lib/api-interfaces.ts");
 const common_1 = __webpack_require__("@nestjs/common");
+const platform_express_1 = __webpack_require__("@nestjs/platform-express");
 const api_interfaces_2 = __webpack_require__("./libs/api-interfaces/src/index.ts");
 const app_service_1 = __webpack_require__("./apps/api/src/app/app.service.ts");
 let AppController = class AppController {
@@ -27,26 +28,38 @@ let AppController = class AppController {
     getKudos() {
         return this.appService.getKudos();
     }
+    uploadedFile(file) {
+        if (file) {
+            return this.appService.saveKudos({ de: '', para: '', video: file });
+        }
+    }
 };
 tslib_1.__decorate([
-    (0, common_1.Get)('hello'),
+    (0, common_1.Get)("hello"),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", []),
     tslib_1.__metadata("design:returntype", typeof (_a = typeof api_interfaces_2.Message !== "undefined" && api_interfaces_2.Message) === "function" ? _a : Object)
 ], AppController.prototype, "getData", null);
 tslib_1.__decorate([
-    (0, common_1.Post)('kudos'),
+    (0, common_1.Post)("kudos"),
     tslib_1.__param(0, (0, common_1.Body)()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof api_interfaces_1.Kudos !== "undefined" && api_interfaces_1.Kudos) === "function" ? _b : Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], AppController.prototype, "postKudos", null);
 tslib_1.__decorate([
-    (0, common_1.Get)('kudos'),
+    (0, common_1.Get)("kudos"),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", []),
     tslib_1.__metadata("design:returntype", Array)
 ], AppController.prototype, "getKudos", null);
+tslib_1.__decorate([
+    (0, common_1.Post)('upload'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.AnyFilesInterceptor)()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", void 0)
+], AppController.prototype, "uploadedFile", null);
 AppController = tslib_1.__decorate([
     (0, common_1.Controller)(),
     tslib_1.__metadata("design:paramtypes", [typeof (_c = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _c : Object])
@@ -64,13 +77,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppModule = void 0;
 const tslib_1 = __webpack_require__("tslib");
 const common_1 = __webpack_require__("@nestjs/common");
+const platform_express_1 = __webpack_require__("@nestjs/platform-express");
 const app_controller_1 = __webpack_require__("./apps/api/src/app/app.controller.ts");
 const app_service_1 = __webpack_require__("./apps/api/src/app/app.service.ts");
 let AppModule = class AppModule {
 };
 AppModule = tslib_1.__decorate([
     (0, common_1.Module)({
-        imports: [],
+        imports: [platform_express_1.MulterModule.register({
+                dest: './upload',
+            })],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
@@ -141,6 +157,13 @@ module.exports = require("@nestjs/common");
 /***/ ((module) => {
 
 module.exports = require("@nestjs/core");
+
+/***/ }),
+
+/***/ "@nestjs/platform-express":
+/***/ ((module) => {
+
+module.exports = require("@nestjs/platform-express");
 
 /***/ }),
 

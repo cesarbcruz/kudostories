@@ -31,6 +31,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "14.1.1",
     "moment": "^2.29.3",
+    "multer": "^1.4.4",
     "recordrtc": "^5.6.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",

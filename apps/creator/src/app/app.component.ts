@@ -1,4 +1,4 @@
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Kudos } from "./../../../../libs/api-interfaces/src/lib/api-interfaces";
 import { HttpClient } from "@angular/common/http";
 import { Message } from "@kudostories/api-interfaces";
@@ -13,12 +13,9 @@ export class AppComponent {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   saveKudos(video: Blob) {
-    var kudos: Kudos = {
-      de: "cesar",
-      para: "Alguem",
-      video: this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(video))
-    };
-    this.http.post("/api/kudos", kudos).subscribe(r => {
+    let formData = new FormData();
+    formData.append('file', video);
+    return this.http.post<any>("/api/upload", formData).subscribe((r) => {
       console.log(r);
     });
   }

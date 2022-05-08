@@ -9,7 +9,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class RecordVideoComponent implements OnInit {
 
-  @Output()
   @Output() newItemEvent = new EventEmitter<Blob>();
   
 
@@ -110,7 +109,8 @@ export class RecordVideoComponent implements OnInit {
 
   sendVideoRecordedData() {
     if(this.videoBlob){
-      this.newItemEvent.emit(this.videoBlob);
+      const blob = new Blob([this.videoBlob], { type: 'video/webm' });
+      this.newItemEvent.emit(blob);
       this.clearVideoRecordedData();
     }  
   }
