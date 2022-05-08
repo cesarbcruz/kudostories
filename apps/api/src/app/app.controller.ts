@@ -3,16 +3,18 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
+  Request,
+  StreamableFile,
   UploadedFile,
   UseInterceptors,
 } from "@nestjs/common";
-import { AnyFilesInterceptor, FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
-import { diskStorage } from "multer";
-
+import { AnyFilesInterceptor } from "@nestjs/platform-express";
 import { Message } from "@kudostories/api-interfaces";
-
 import { AppService } from "./app.service";
+import { join } from "path";
+import { createReadStream } from "fs";
 
 @Controller()
 export class AppController {
@@ -33,11 +35,16 @@ export class AppController {
     return this.appService.getKudos();
   }
 
-  @Post('upload')
+  @Post("upload")
   @UseInterceptors(AnyFilesInterceptor())
-  uploadedFile(@UploadedFile() file, @Body() body) {
-    if(!file){
-      return this.appService.saveKudos({de:'',para:'',video:file});
-    }    
+  async uploadedFile(@Request() req) {
+    return req.files.map(file => file.filename);
   }
+
+  @Get("video/:id")
+  getFile(@Param('id') id): StreamableFile {
+    const file = createReadStream(join(process.cwd(), `/upload/${id}`));
+    return new StreamableFile(file);
+  }
+
 }

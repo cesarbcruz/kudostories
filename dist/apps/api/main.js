@@ -6,7 +6,7 @@
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppController = void 0;
 const tslib_1 = __webpack_require__("tslib");
@@ -15,6 +15,8 @@ const common_1 = __webpack_require__("@nestjs/common");
 const platform_express_1 = __webpack_require__("@nestjs/platform-express");
 const api_interfaces_2 = __webpack_require__("./libs/api-interfaces/src/index.ts");
 const app_service_1 = __webpack_require__("./apps/api/src/app/app.service.ts");
+const path_1 = __webpack_require__("path");
+const fs_1 = __webpack_require__("fs");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -28,10 +30,14 @@ let AppController = class AppController {
     getKudos() {
         return this.appService.getKudos();
     }
-    uploadedFile(file, body) {
-        if (!file) {
-            return this.appService.saveKudos({ de: '', para: '', video: file });
-        }
+    uploadedFile(req) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return req.files.map(file => file.filename);
+        });
+    }
+    getFile(id) {
+        const file = (0, fs_1.createReadStream)((0, path_1.join)(process.cwd(), `/upload/${id}`));
+        return new common_1.StreamableFile(file);
     }
 };
 tslib_1.__decorate([
@@ -54,17 +60,23 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Array)
 ], AppController.prototype, "getKudos", null);
 tslib_1.__decorate([
-    (0, common_1.Post)('upload'),
+    (0, common_1.Post)("upload"),
     (0, common_1.UseInterceptors)((0, platform_express_1.AnyFilesInterceptor)()),
-    tslib_1.__param(0, (0, common_1.UploadedFile)()),
-    tslib_1.__param(1, (0, common_1.Body)()),
+    tslib_1.__param(0, (0, common_1.Request)()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object]),
-    tslib_1.__metadata("design:returntype", void 0)
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", Promise)
 ], AppController.prototype, "uploadedFile", null);
+tslib_1.__decorate([
+    (0, common_1.Get)("video/:id"),
+    tslib_1.__param(0, (0, common_1.Param)('id')),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", typeof (_c = typeof common_1.StreamableFile !== "undefined" && common_1.StreamableFile) === "function" ? _c : Object)
+], AppController.prototype, "getFile", null);
 AppController = tslib_1.__decorate([
     (0, common_1.Controller)(),
-    tslib_1.__metadata("design:paramtypes", [typeof (_c = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _c : Object])
+    tslib_1.__metadata("design:paramtypes", [typeof (_d = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _d : Object])
 ], AppController);
 exports.AppController = AppController;
 
@@ -173,6 +185,20 @@ module.exports = require("@nestjs/platform-express");
 /***/ ((module) => {
 
 module.exports = require("tslib");
+
+/***/ }),
+
+/***/ "fs":
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "path":
+/***/ ((module) => {
+
+module.exports = require("path");
 
 /***/ })
 

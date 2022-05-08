@@ -7,5 +7,5 @@ export interface Message {
 export interface Kudos {
   de: string;
   para: string;
-  video: string;
+  url: string;
 }

@@ -13,10 +13,23 @@ export class AppComponent {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   saveKudos(video: Blob) {
-    let formData = new FormData();
-    formData.append('file', video);
-    return this.http.post<any>("/api/upload", formData).subscribe((r) => {
-      console.log(r);
+    this.uploadVideo(video).subscribe((r) => {
+      const kudos:Kudos = {
+        de: 'Cesar',
+        para: "Voce",
+        url: `/api/video/${r[0]}`
+      }
+      return this.http.post<any>("/api/kudos", kudos).subscribe(r=>{
+        
+      });
     });
   }
+
+  uploadVideo(video: Blob){
+    let formData = new FormData();
+    formData.append('file', video);
+    return this.http.post<any>("/api/upload", formData);
+  }
+
+  
 }
