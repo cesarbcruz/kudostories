@@ -6,12 +6,13 @@
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var _a, _b;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppController = void 0;
 const tslib_1 = __webpack_require__("tslib");
+const api_interfaces_1 = __webpack_require__("./libs/api-interfaces/src/lib/api-interfaces.ts");
 const common_1 = __webpack_require__("@nestjs/common");
-const api_interfaces_1 = __webpack_require__("./libs/api-interfaces/src/index.ts");
+const api_interfaces_2 = __webpack_require__("./libs/api-interfaces/src/index.ts");
 const app_service_1 = __webpack_require__("./apps/api/src/app/app.service.ts");
 let AppController = class AppController {
     constructor(appService) {
@@ -20,16 +21,35 @@ let AppController = class AppController {
     getData() {
         return this.appService.getData();
     }
+    postKudos(kudos) {
+        return this.appService.saveKudos(kudos);
+    }
+    getKudos() {
+        return this.appService.getKudos();
+    }
 };
 tslib_1.__decorate([
     (0, common_1.Get)('hello'),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", typeof (_a = typeof api_interfaces_1.Message !== "undefined" && api_interfaces_1.Message) === "function" ? _a : Object)
+    tslib_1.__metadata("design:returntype", typeof (_a = typeof api_interfaces_2.Message !== "undefined" && api_interfaces_2.Message) === "function" ? _a : Object)
 ], AppController.prototype, "getData", null);
+tslib_1.__decorate([
+    (0, common_1.Post)('kudos'),
+    tslib_1.__param(0, (0, common_1.Body)()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof api_interfaces_1.Kudos !== "undefined" && api_interfaces_1.Kudos) === "function" ? _b : Object]),
+    tslib_1.__metadata("design:returntype", void 0)
+], AppController.prototype, "postKudos", null);
+tslib_1.__decorate([
+    (0, common_1.Get)('kudos'),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", Array)
+], AppController.prototype, "getKudos", null);
 AppController = tslib_1.__decorate([
     (0, common_1.Controller)(),
-    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _b : Object])
+    tslib_1.__metadata("design:paramtypes", [typeof (_c = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _c : Object])
 ], AppController);
 exports.AppController = AppController;
 
@@ -69,8 +89,17 @@ exports.AppService = void 0;
 const tslib_1 = __webpack_require__("tslib");
 const common_1 = __webpack_require__("@nestjs/common");
 let AppService = class AppService {
+    constructor() {
+        this.kudosList = [];
+    }
     getData() {
         return { message: 'Welcome to api!' };
+    }
+    saveKudos(kudos) {
+        this.kudosList.push(kudos);
+    }
+    getKudos() {
+        return this.kudosList;
     }
 };
 AppService = tslib_1.__decorate([

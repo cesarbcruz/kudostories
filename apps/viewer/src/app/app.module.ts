@@ -1,3 +1,5 @@
+import { SharedUiModule } from './../../../../libs/shared/ui/src/lib/shared-ui.module';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +11,8 @@ import { RouterModule } from '@angular/router';
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    SharedUiModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],

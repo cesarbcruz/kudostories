@@ -69,7 +69,7 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4300
+        "proxyConfig": "apps/creator/proxy.conf.json"
       }
     },
     "extract-i18n": {

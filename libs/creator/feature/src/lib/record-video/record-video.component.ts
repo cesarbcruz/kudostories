@@ -1,5 +1,5 @@
 import { VideoRecordingService } from './service/video-recording.service';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -8,6 +8,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./record-video.component.less']
 })
 export class RecordVideoComponent implements OnInit {
+
+  @Output()
+  @Output() newItemEvent = new EventEmitter<Blob>();
+  
 
   @ViewChild('videoElement') videoElement: any;
   video: any;
@@ -105,7 +109,10 @@ export class RecordVideoComponent implements OnInit {
   }
 
   sendVideoRecordedData() {
-    this._downloadFile(this.videoBlob, 'video/mp4', this.videoName? this.videoName: '');
+    if(this.videoBlob){
+      this.newItemEvent.emit(this.videoBlob);
+      this.clearVideoRecordedData();
+    }  
   }
 
 

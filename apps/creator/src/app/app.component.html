@@ -1,7 +1,6 @@
 <div class="relative bg-white overflow-hidden">
   <div class="max-w-7xl mx-auto">
-    <div
-    >
+    <div>
       <shared-menu [logo]="'/assets/logo.png'"></shared-menu>
       <main
         class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-10"
@@ -19,16 +18,13 @@
               Grave sua mensagem em áudio e vídeo para a pessoa que deseja
               elogiar ou reconhecer o trabalho.
             </p>
-            
-              <img
-                class="opacity-25 object-contain h-48 w-96 xl:mt-10"
-                src="https://1qjpt15fhlq3xjfpm2utibj1-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/kudos-illustration.png"
-                alt=""
-              />
-            
-            
+            <img
+              class="opacity-25 object-contain h-48 w-96 xl:mt-10"
+              src="https://1qjpt15fhlq3xjfpm2utibj1-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/kudos-illustration.png"
+              alt=""
+            />
           </div>
-          <div><creator-record-video></creator-record-video></div>
+          <div><creator-record-video (newItemEvent)="saveKudos($event)"></creator-record-video></div>
         </div>
       </main>
     </div>

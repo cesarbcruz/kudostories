@@ -69,7 +69,7 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4400
+        "proxyConfig": "apps/viewer/proxy.conf.json"
       }
     },
     "extract-i18n": {
