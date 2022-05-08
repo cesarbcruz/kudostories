@@ -1,6 +1,7 @@
 import { VideoRecordingService } from './service/video-recording.service';
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'creator-record-video',
@@ -114,7 +115,6 @@ export class RecordVideoComponent implements OnInit {
       this.clearVideoRecordedData();
     }  
   }
-
 
   ngOnDestroy(): void {
     

@@ -20,7 +20,7 @@
           "apps/home/src/assets"
         ],
         "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+          "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
           "apps/home/src/styles.less"
         ],
         "scripts": []

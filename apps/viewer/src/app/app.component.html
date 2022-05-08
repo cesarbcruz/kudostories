@@ -17,22 +17,22 @@
             Confira os kudos enviados
           </p>
           <div class="grid grid-cols-3 gap-3">
-            <div class="max-w-sm rounded overflow-hidden shadow-2xl" *ngFor="let kudos of kudoList">
+            <div
+              class="max-w-sm rounded overflow-hidden shadow-2xl"
+              *ngFor="let kudos of kudoList"
+            >
               <video class="w-full" [src]="kudos.url" controls="true"></video>
               <div class="px-6 py-4">
                 <p class="text-gray-700 text-base">
-                  {{kudos.de}} enviou elogios a {{kudos.para}}
+                  {{ kudos.de }} enviou elogios a {{ kudos.para }}
                 </p>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </main>
     </div>
   </div>
 </div>
-
-
-
 
 <router-outlet></router-outlet>
