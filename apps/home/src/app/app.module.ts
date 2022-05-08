@@ -6,12 +6,10 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeUiModule } from '@kudostories/home/ui';
-import { MaterialModule } from './material/material.module';
-
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, MaterialModule, HomeUiModule, SharedUiModule],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, HomeUiModule, SharedUiModule],
   providers: [],
   bootstrap: [AppComponent],
 })
