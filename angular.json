@@ -9,6 +9,7 @@
     "home": "apps/home",
     "home-e2e": "apps/home-e2e",
     "home-ui": "libs/home/ui",
+    "shared-local-data-access": "libs/shared/local-data-access",
     "shared-ui": "libs/shared/ui",
     "viewer": "apps/viewer",
     "viewer-e2e": "apps/viewer-e2e"

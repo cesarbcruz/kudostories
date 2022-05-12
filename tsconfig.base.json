@@ -27,6 +27,9 @@
       "@kudostories/home/ui": [
         "libs/home/ui/src/index.ts"
       ],
+      "@kudostories/shared/local-data-access": [
+        "libs/shared/local-data-access/src/index.ts"
+      ],
       "@kudostories/shared/ui": [
         "libs/shared/ui/src/index.ts"
       ]

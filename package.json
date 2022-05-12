@@ -30,6 +30,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "14.1.1",
+    "dexie": "^3.2.2",
     "moment": "^2.29.3",
     "multer": "^1.4.4",
     "recordrtc": "^5.6.2",
